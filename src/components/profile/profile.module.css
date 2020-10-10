@@ -1,0 +1,6 @@
+.content {
+    color: #000;
+    grid-area: content;
+    margin-top: 10px;
+    padding-bottom: 70px;
+}

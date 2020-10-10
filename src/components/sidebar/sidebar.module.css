@@ -1,0 +1,31 @@
+.sidebar {
+    background: #204e79;
+    color: #fff;
+    width: 300px;
+    grid-area: sidebar;
+    min-height: 100%;
+    transition: .2s;
+}
+
+.active {
+    font-weight: 700;
+    color: #cafcfc;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+}
+
+nav a {
+    margin-top: 7px;
+}
+
+nav a:last-child {
+    margin-top: 30px;
+}
+
+a:hover {
+    text-decoration: underline;
+}

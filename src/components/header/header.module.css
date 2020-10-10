@@ -1,0 +1,44 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #204e79;
+    color: #fff;
+    height: 60px;
+    width: 100%;
+    padding: 10px;
+}
+
+.logoWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 40px;
+    width: auto;
+    margin-right: 20px;
+}
+
+.logout {
+    display: inline;
+    font-size: 13px;
+    padding: 2px;
+    margin: 3px;
+    border-radius: 2px;
+    box-sizing: content-box;
+}
+
+.logout:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    border: 1px solid #fff;
+}

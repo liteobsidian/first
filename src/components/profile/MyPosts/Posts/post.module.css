@@ -1,0 +1,32 @@
+.post {
+    margin-top: 20px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.post img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 35px;
+}
+
+.postTxt {
+    margin-left: 15px;
+}
+
+.postUserName {
+    margin-bottom: 10px;
+}
+
+.likes {
+    font-size: 12px;
+    display: block;
+    color: #204e79;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.likes:hover {
+    font-size: 14px;
+}

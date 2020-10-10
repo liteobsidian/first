@@ -1,0 +1,44 @@
+body {
+    font-family: Tahoma, sans-serif;
+    font-size: 14px;
+}
+
+*, a, ul, li, *:before, *:after, p, nav {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: inherit;
+}
+
+button, button:focus, button:active {
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+a {
+    font-size: 18px;
+}
+
+h2 {
+    font-size: 22px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.contentContainer {
+    width: 80%;
+    margin: 60px auto 0;
+    display: grid;
+    grid-template-areas: "sidebar content content";
+    grid-template-columns: 2fr 10fr;
+    grid-gap: 10px;
+}

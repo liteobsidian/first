@@ -1,0 +1,36 @@
+.pagesCount {
+    color: #343434;
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+}
+
+.pageNumber {
+    margin: 10px;
+}
+
+.selectedPage {
+    margin: 10px;
+    font-size: 20px;
+    color: #000000;
+}
+
+.pageNumber:hover {
+    color: #000000;
+    cursor: pointer;
+}
+
+.btn {
+    padding: 10px 15px;
+    background: #009351;
+    color: #fff;
+    min-width: 60px;
+    margin: 5px;
+    border-radius: 5px;
+    transition: .3s;
+}
+
+.btn:hover {
+    background: #005a31;
+    cursor: pointer;
+}

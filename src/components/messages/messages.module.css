@@ -1,0 +1,16 @@
+.content {
+    grid-area: content;
+    display: grid;
+    grid-template-areas: "dialogs messages messages";
+    grid-template-columns: 3fr 7fr;
+    grid-gap: 10px;
+    margin-left: 10px;
+}
+
+.h2 {
+    margin: 10px;
+}
+
+.messages {
+    min-height: 80vh;
+}

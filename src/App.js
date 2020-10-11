@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Sidebar from "./components/sidebar/sidebar.jsx";
-import {BrowserRouter, Route} from "react-router-dom";
+import {HashRouter, Route} from "react-router-dom";
 import {withRouter} from "react-router-dom";
 // import UsersContainer from "./components/users/usersContainer.jsx";
 import ProfileContainer from "./components/profile/profileContainer";
@@ -59,11 +59,11 @@ let AppContainer = compose(
 
 let AppWithRouter = () => {
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Provider store={store}>
                 <AppContainer/>
             </Provider>
-        </BrowserRouter>
+        </HashRouter>
     )
 }
 

@@ -10,6 +10,7 @@ let ProfileStatusWithHooks = (props) => {
     }, [props.status]);
 
     const activateEditMode = () => {
+        if (props.isOwner)
         setEditMode(true);
     };
 
@@ -29,7 +30,7 @@ let ProfileStatusWithHooks = (props) => {
                 <span onDoubleClick={activateEditMode}>{props.status || '--no_status--'}</span>
             </div>
             }
-            {editMode &&
+            {editMode && props.isOwner &&
             <input onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode} value={status}/>
             }
 

@@ -1,43 +1,72 @@
-import React from "react";
+import React, {useState} from "react";
 import s from './userProfile.module.css'
 import avatar from "../../../../assets/images/user.png"
 import Preloader from "../../../common/preloader/preloader";
 import ProfileStatusWithHooks from "./profileStatusWithHooks";
+import ProfileDataReduxForm from "./profileDataForm";
 
 
-const UserProfile = (props) => {
-    if (!props.profile) {
+const UserProfile = ({profile, savePhoto, isOwner, status, updateStatus}) => {
+
+    let [editMode, setEditMode] = useState(false);
+
+    const onMainPhotoSelected = (e) => {
+        if (e.target.files.length) {
+            savePhoto(e.target.files[0])
+        }
+    }
+
+    if (!profile) {
         return (
             <Preloader/>
         )
     } else {
         return (
-            <div className={s.profile}>
-                <img src={props.profile.photos.large === null ? avatar : props.profile.photos.large} alt="avatar"
-                     className={s.avatar}/>
-                <div className={s.profileDescription}>
-                    <h2 className={s.userName}>{props.profile.fullName}</h2>
-                    <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
-                    <p>AboutMe: {props.profile.aboutMe === null ? null : props.profile.aboutMe}</p>
-                    <p>Contacts:</p>
-                    <div className={s.socialsWrapper}>
-                        {props.profile.contacts.vk === null ? '' : <a className={s.socials} href={props.profile.contacts.vk}>vk</a>}
-                        {props.profile.contacts.facebook === null ? '' :
-                            <a className={s.socials} href={props.profile.contacts.facebook}>facebook</a>}
-                        {props.profile.contacts.instagram === null ? '' :
-                            <a className={s.socials} href={props.profile.contacts.instagram}>instagram</a>}
-                        {props.profile.contacts.twitter === null ? '' : <a className={s.socials} href={props.profile.contacts.twitter}>twitter</a>}
-                        {props.profile.contacts.youtube === null ? '' : <a className={s.socials} href={props.profile.contacts.youtube}>youtube</a>}
-                        {props.profile.contacts.github === null ? '' : <a className={s.socials} href={props.profile.contacts.github}>github</a>}
-                        {props.profile.contacts.website === null ? '' : <a className={s.socials} href={props.profile.contacts.website}>website</a>}
-                        {props.profile.contacts.mainLink === null ? '' :
-                            <a className={s.socials} href={props.profile.contacts.mainLink}>mainLink</a>}
+            <>
+                <div className={s.profile}>
+                    <img src={profile.photos.large || avatar} alt="avatar"
+                         className={s.avatar}/>
+                    <div className={s.profileDescription}>
+                        <h2 className={s.userName}>{profile.fullName}</h2>
+                        <ProfileStatusWithHooks isOwner={isOwner} status={status}
+                                                updateStatus={updateStatus}/>
+                        {editMode
+                            ? <ProfileDataReduxForm profile={profile}/>
+                            : <ProfileData goToEditMode={()=>{setEditMode(true)}} profile={profile} isOwner={isOwner}/>}
                     </div>
-                    <p>Need Job: {props.profile.lookingForAJob===null?'Not found':props.profile.lookingForAJob?props.profile.lookingForAJobDescription:'Not'}</p>
                 </div>
-            </div>
+                {isOwner &&
+                <div>
+                    <p className={s.changePhotoDescription}>Change your profile photo</p>
+                    <input type={"file"} onChange={onMainPhotoSelected}/>
+                </div>}
+            </>
         );
     }
+}
+
+const Contact = ({contactTitle, contactValue}) => {
+    return (
+        <a className={s.socials} href={contactValue}>{contactTitle}</a>
+    )
+}
+
+const ProfileData = ({profile, isOwner, goToEditMode}) => {
+    return <>
+        <p>AboutMe: {profile.aboutMe === null ? null : profile.aboutMe}</p>
+        <p>Contacts:</p>
+        <div className={s.socialsWrapper}>
+            {Object.keys(profile.contacts).map(key => {
+                if (profile.contacts[key] !== null)
+                    return <Contact key={key} contactTitle={key}
+                                    contactValue={profile.contacts[key]}/>
+            })}
+        </div>
+        <p>Looking for a Job: {profile.lookingForAJob ? "Yes" : 'No'}</p>
+        {profile.lookingForAJob &&
+        <p>My professional skills : {profile.lookingForAJobDescription}</p>}
+        {isOwner && <button className={s.btn} onClick={goToEditMode}>Edit profile</button>}
+    </>
 }
 
 export default UserProfile;

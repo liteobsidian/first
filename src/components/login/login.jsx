@@ -39,6 +39,9 @@ const Login = (props) => {
             <div>
                 <h1 className={s.loginHeading}>Login</h1>
                 <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl} />
+                <p>For test use:</p>
+                <p><b>Email:</b> free@samuraijs.com</p>
+                <p><b>Password:</b> free</p>
             </div>
         );
     }

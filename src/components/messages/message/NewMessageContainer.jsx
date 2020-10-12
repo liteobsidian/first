@@ -2,7 +2,6 @@ import {addMessageActionCreator} from "../../../redux/messagesReducer";
 import {connect} from "react-redux";
 import NewMessage from "./NewMessage.jsx";
 
-let mapStateToProps = (state) => {};
 let mapDispatchToProps = (dispatch) => {
     return {
         addNewMessage: (newMessageBody)=>{
@@ -11,6 +10,6 @@ let mapDispatchToProps = (dispatch) => {
     }
 };
 
-const NewMessageContainer = connect(mapStateToProps,mapDispatchToProps)(NewMessage);
+const NewMessageContainer = connect(null,mapDispatchToProps)(NewMessage);
 
 export default NewMessageContainer;

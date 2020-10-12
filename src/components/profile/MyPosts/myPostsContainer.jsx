@@ -1,4 +1,3 @@
-import React from "react";
 import MyPosts from "./myPosts";
 import {connect} from "react-redux";
 

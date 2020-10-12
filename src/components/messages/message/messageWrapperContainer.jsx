@@ -1,4 +1,3 @@
-import React from "react";
 import MessageWrapper from "./messageWrapper.jsx";
 import {connect} from "react-redux";
 

@@ -72,11 +72,11 @@
 //             id: 2,
 //             photoUrl: 'https://sun9-3.userapi.com/aSpcJ1VNJ54nEpz8rvIgtRgVaBEvHmhegU5jYQ/IzzpDgOQxNQ.jpg',
 //             followed: true,
-//             fullName: 'Nikita Pidorg',
-//             status: 'Hi, I suck your dick!',
+//             fullName: 'Nikita',
+//             status: 'Hi, I\`m true programmer',
 //             location: {
-//                 city: 'Zalupa',
-//                 country: 'Mira'
+//                 city: 'Lipetsk',
+//                 country: 'Russia'
 //             }
 //         },
 //         {

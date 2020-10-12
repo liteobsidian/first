@@ -64,9 +64,10 @@ const ProfileData = ({profile, isOwner, goToEditMode}) => {
         <p>AboutMe: {profile.aboutMe === null ? null : profile.aboutMe}</p>
         <p>Contacts:</p>
         <div className={s.socialsWrapper}>
+            {/* eslint-disable-next-line array-callback-return */}
             {Object.keys(profile.contacts).map(key => {
-                if (profile.contacts[key] !== null)
-                    return <Contact key={key} contactTitle={key}
+                if (profile.contacts[key] !== null && profile.contacts[key] !== '')
+                return <Contact key={key} contactTitle={key}
                                     contactValue={profile.contacts[key]}/>
             })}
         </div>

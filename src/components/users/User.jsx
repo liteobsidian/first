@@ -2,7 +2,6 @@ import React from "react";
 import s from './users.module.css';
 import defaultUserPhoto from '../../assets/images/user.png'
 import {NavLink} from "react-router-dom";
-import Paginator from "../common/Paginator/paginator";
 
 let User = ({user, followingInProgress, follow, unfollow}) => {
     return (
@@ -30,9 +29,8 @@ let User = ({user, followingInProgress, follow, unfollow}) => {
                     <div className={s.status}>{user.status}</div>
                 </div>
                 <div className={s.countryWrapper}>
-
-                    <div className={s.country}>{"user.location.city"},</div>
-                    <div className={s.country}>{"user.location.country"}</div>
+                    {/*<div className={s.country}>{"user.location.city"},</div>*/}
+                    {/*<div className={s.country}>{"user.location.country"}</div>*/}
                 </div>
             </div>
         </div>)

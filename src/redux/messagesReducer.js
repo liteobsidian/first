@@ -2,13 +2,13 @@ const SEND_MESSAGE = 'messages/SEND-MESSAGE';
 
 let initialState = {
     messages: [
-        {userId: 1, name: 'Andrew', message: 'Hellow! How are you?'},
-        {userId: 4, name: 'Roman', message: 'Hi! I\'m fine!'}
+        {id:1, userId: 1, name: 'Andrew', message: 'Fake message'},
+        {id:2, userId: 4, name: 'Roman', message: 'You can try to post message on state'}
     ],
     dialogs: [
         {name: "Andrey", userId: "001"},
         {name: "Dmitry", userId: "002"},
-        {name: "Semion", userId: "003"}
+        {name: "Semion", userId: "003"},
     ]
 }
 
@@ -18,7 +18,7 @@ const messagesReducer = (state = initialState, action) => {
         case SEND_MESSAGE:
             return {
                 ...state,
-                messages: [...state.messages, {userId: 4, name: 'Roman', message: action.newMessageBody}]
+                messages: [...state.messages, {id:3, userId: 4, name: 'Roman', message: action.newMessageBody}]
             }
         default:
             return state;

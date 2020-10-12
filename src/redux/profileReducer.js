@@ -9,8 +9,19 @@ const SAVE_PHOTO_SUCCESS = 'profile/SAVE-PHOTO-SUCCESS'
 
 let initialState = {
     posts: [
-        {id: 1, user: 'Strelnykov Roman', message: 'Hello World! I can use props!', like: 15},
-        {id: 2, user: 'Strelnykov Roman', message: 'It\'s my first post in this wall', like: 23}
+        {
+            id: 1,
+            user: 'Strelnykov Roman',
+            message: 'You can vizit my profile: https://liteobsidian.github.io/first/#/profile/11682',
+            like: 15
+        },
+        {
+            id: 2,
+            user: 'Strelnykov Roman',
+            message: 'You can try to use posts textarea and send text on state',
+            like: 15
+        },
+        {id: 3, user: 'Strelnykov Roman', message: 'It\'s fake posts', like: 23}
     ],
     text: "",
     profile: null,
@@ -100,9 +111,13 @@ export const getStatus = (userId) => async (dispatch) => {
 }
 
 export const updateStatus = (status) => async (dispatch) => {
-    let response = await ProfileAPI.updateStatus(status);
-    if (response.data.resultCode === 0) {
-        dispatch(setStatus(status))
+    try {
+        let response = await ProfileAPI.updateStatus(status);
+        if (response.data.resultCode === 0) {
+            dispatch(setStatus(status))
+        }
+    } catch (error) {
+        //dispatch error and show dialog window
     }
 };
 
@@ -116,11 +131,10 @@ export const savePhoto = (file) => async (dispatch) => {
 export const saveProfile = (profile) => async (dispatch, getState) => {
     const userId = getState().auth.userId;
     let response = await ProfileAPI.saveProfile(profile);
-    debugger;
     if (response.data.resultCode === 0) {
-       dispatch(getUserProfile(userId));
+        dispatch(getUserProfile(userId));
     } else {
-        dispatch (stopSubmit("edit-profile", {_error: response.data.messages[0]})) //error to redux-form
+        dispatch(stopSubmit("edit-profile", {_error: response.data.messages[0]})) //error to redux-form
         return Promise.reject(response.data.messages[0]);
     }
 }

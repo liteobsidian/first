@@ -1,6 +1,6 @@
 import React from "react";
 import s from './messageWrapper.module.css'
-import messageAvatar from "../../../assets/images/team00.png"
+import messageAvatar from "../../../assets/images/user.png"
 
 
 const Message = (props) => {

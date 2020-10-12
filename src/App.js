@@ -1,9 +1,8 @@
 import React from 'react';
 import './App.css';
 import Sidebar from "./components/sidebar/sidebar.jsx";
-import {HashRouter, Route} from "react-router-dom";
+import {HashRouter, Route, Switch} from "react-router-dom";
 import {withRouter} from "react-router-dom";
-// import UsersContainer from "./components/users/usersContainer.jsx";
 import ProfileContainer from "./components/profile/profileContainer";
 import HeaderContainer from "./components/header/headerContainer";
 import Login from "./components/login/login";
@@ -21,8 +20,18 @@ let MessagesContainer = React.lazy(() => import (`./components/messages/messages
 let UsersContainer = React.lazy(() => import (`./components/users/usersContainer.jsx`));
 
 class App extends React.Component {
+    catchAllUnhandledErrors = (promiseRejectionEvent) => {
+        alert("Some error occured");
+        console.error(promiseRejectionEvent)
+    }
     componentDidMount() {
         this.props.initializeApp()
+        window.addEventListener("unhandledrejection", function (promiseRejectionEvent){
+        })
+    }
+    componentWillUnmount() {
+        window.removeEventListener("unhandledrejection", function (promiseRejectionEvent){
+        })
     }
 
     render() {
@@ -34,14 +43,17 @@ class App extends React.Component {
                 <HeaderContainer/>
                 <div className="contentContainer">
                     <Sidebar/>
-                    <Route path="/profile/:userId?" render={() => <ProfileContainer/>}/>
-                    <Route path="/message" render={withSuspense(MessagesContainer)}/>
-                    <Route path="/users" render={withSuspense(UsersContainer)}
-                    />
-                    <Route path="/news" render={() => <NewsContainer/>}/>
-                    <Route path="/music" render={() => <MusicContainer/>}/>
-                    <Route path="/settings" render={() => <SettingsContainer/>}/>
-                    <Route path="/login" render={() => <Login/>}/>
+                    <Switch>
+                        <Route path="/profile/:userId?" render={() => <ProfileContainer/>}/>
+                        <Route path="/message" render={withSuspense(MessagesContainer)}/>
+                        <Route path="/users" render={withSuspense(UsersContainer)}/>
+                        <Route path="/news" render={() => <NewsContainer/>}/>
+                        <Route path="/music" render={() => <MusicContainer/>}/>
+                        <Route path="/settings" render={() => <SettingsContainer/>}/>
+                        <Route path="/login" render={() => <Login/>}/>
+                        <Route path="/" render={() => <ProfileContainer/>}/>
+                        <Route path="/*" render={()=><h1>404 NOT FOUND</h1>}/>
+                    </Switch>
                 </div>
             </div>
         );

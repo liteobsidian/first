@@ -52,3 +52,22 @@
     background: #005a31;
     cursor: pointer;
 }
+
+.formError {
+    border: 2px solid red;
+    color: red;
+    padding: 5px;
+    margin: 3px;
+    display: inline-block;
+}
+
+textarea {
+    display: block;
+    width: 90%;
+    height: 60px;
+    padding: 5px;
+    resize: none;
+    font-family: inherit;
+    font-size: 14px;
+    margin: 5px 0;
+}

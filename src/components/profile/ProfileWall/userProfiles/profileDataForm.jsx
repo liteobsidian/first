@@ -1,24 +1,28 @@
 import React from "react";
 import s from "./userProfile.module.css";
-import {createField, Input} from "../../../common/formControls/formsControls";
+import {createField, Input, Textarea} from "../../../common/formControls/formsControls";
 import {reduxForm} from "redux-form";
 
 
-const ProfileDataForm = ({profile}) => {
-    return <form>
-        <p>AboutMe: {createField("Full name", "fullName", [], Input, "text")}</p>
+const ProfileDataForm = ({handleSubmit, profile, error}) => {
+    return <form onSubmit={handleSubmit}>
+        <p>Full Name: {createField("Full Name", "fullName", [], Input, "text")}</p>
+        <p>About Me: {createField("About me", "aboutMe", [], Input, "text")}</p>
         <p>Contacts:</p>
         <div className={s.socialsWrapper}>
-            {/*{Object.keys(profile.contacts).map(key => {*/}
-            {/*    if (profile.contacts[key] !== null)*/}
-            {/*        return <Contact key={key} contactTitle={key}*/}
-            {/*                        contactValue={profile.contacts[key]}/>*/}
-            {/*})}*/}
+            {Object.keys(profile.contacts).map(key => {
+                    return <b key={key}>{key}:
+                        {createField(`Enter link to ${key}`, `contacts.${key}`, [], Input, "text")} </b>
+            })}
         </div>
-        <p>Looking for a Job: {profile.lookingForAJob ? "Yes" : 'No'}</p>
-        {profile.lookingForAJob &&
-        <p>My professional skills : {profile.lookingForAJobDescription}</p>}
-        <button className={s.btn} onClick={()=>{}}>save</button>
+        <p>Looking for a Job:
+            {createField("", "lookingForAJob", [], Input, "checkbox")}</p>
+        <p>My professional skills :
+            {createField("Professional skills",
+                "lookingForAJobDescription",
+                [], Textarea, "textarea")}</p>
+        {error && <div className={s.formError}>{error}</div>}
+        <button className={s.btn}>save</button>
     </form>
 }
 

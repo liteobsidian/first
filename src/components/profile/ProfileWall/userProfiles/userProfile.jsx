@@ -6,7 +6,7 @@ import ProfileStatusWithHooks from "./profileStatusWithHooks";
 import ProfileDataReduxForm from "./profileDataForm";
 
 
-const UserProfile = ({profile, savePhoto, isOwner, status, updateStatus}) => {
+const UserProfile = ({profile, savePhoto, isOwner, status, updateStatus, saveProfile}) => {
 
     let [editMode, setEditMode] = useState(false);
 
@@ -14,6 +14,14 @@ const UserProfile = ({profile, savePhoto, isOwner, status, updateStatus}) => {
         if (e.target.files.length) {
             savePhoto(e.target.files[0])
         }
+    }
+
+    const onSubmit = (formData) => {
+        saveProfile(formData).then(
+            ()=>{
+                setEditMode(false)
+            }
+        )
     }
 
     if (!profile) {
@@ -31,11 +39,11 @@ const UserProfile = ({profile, savePhoto, isOwner, status, updateStatus}) => {
                         <ProfileStatusWithHooks isOwner={isOwner} status={status}
                                                 updateStatus={updateStatus}/>
                         {editMode
-                            ? <ProfileDataReduxForm profile={profile}/>
+                            ? <ProfileDataReduxForm  initialValues={profile} profile={profile} onSubmit={onSubmit}/>
                             : <ProfileData goToEditMode={()=>{setEditMode(true)}} profile={profile} isOwner={isOwner}/>}
                     </div>
                 </div>
-                {isOwner &&
+                {isOwner && editMode &&
                 <div>
                     <p className={s.changePhotoDescription}>Change your profile photo</p>
                     <input type={"file"} onChange={onMainPhotoSelected}/>

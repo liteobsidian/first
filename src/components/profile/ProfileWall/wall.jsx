@@ -7,7 +7,12 @@ const Wall = (props) => {
     return (
         <div>
             <Wallpaper />
-            <UserProfile savePhoto={props.savePhoto} isOwner={props.isOwner} profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
+            <UserProfile savePhoto={props.savePhoto}
+                         saveProfile={props.saveProfile}
+                         isOwner={props.isOwner}
+                         profile={props.profile}
+                         status={props.status}
+                         updateStatus={props.updateStatus}/>
         </div>
     );
 }
